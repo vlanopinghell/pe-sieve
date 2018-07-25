@@ -23,6 +23,7 @@
 #define PARAM_QUIET "/quiet"
 #define PARAM_JSON "/json"
 #define PARAM_SHELLCODE "/shellc"
+#define PARAM_SUSPEND "/suspend"
 
 void print_in_color(int color, std::string text)
 {
@@ -49,6 +50,10 @@ void print_help()
 	
 	print_in_color(param_color, PARAM_SHELLCODE);
 	std::cout << "\t: Detect shellcode implants. (By default it detects PE only).\n";
+
+	print_in_color(param_color, PARAM_SUSPEND);
+	std::cout << "\t: Suspend the process before scanning (it will be resumed after the scan).\n";
+
 #ifdef _WIN64
 	print_in_color(param_color, PARAM_MODULES_FILTER);
 	std::cout << " <*mfilter_id>\n\t: Filter the scanned modules.\n";
@@ -159,6 +164,9 @@ int main(int argc, char *argv[])
 		else if (!strcmp(argv[i], PARAM_SHELLCODE)) {
 			args.shellcode = true;
 		}
+		else if (!strcmp(argv[i], PARAM_SUSPEND)) {
+			args.suspend = true;
+	}
 	}
 	//if didn't received PID by explicit parameter, try to parse the first param of the app
 	if (args.pid == 0) {
