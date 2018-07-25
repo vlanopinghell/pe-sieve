@@ -52,7 +52,7 @@ void print_help()
 	std::cout << "\t: Detect shellcode implants. (By default it detects PE only).\n";
 
 	print_in_color(param_color, PARAM_SUSPEND);
-	std::cout << "\t: Suspend the process before scanning (it will be resumed after the scan).\n";
+	std::cout << " : Suspend the process before scanning (resumes after the scan).\n";
 
 #ifdef _WIN64
 	print_in_color(param_color, PARAM_MODULES_FILTER);
