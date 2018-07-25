@@ -166,7 +166,7 @@ int main(int argc, char *argv[])
 		}
 		else if (!strcmp(argv[i], PARAM_SUSPEND)) {
 			args.suspend = true;
-	}
+		}
 	}
 	//if didn't received PID by explicit parameter, try to parse the first param of the app
 	if (args.pid == 0) {
