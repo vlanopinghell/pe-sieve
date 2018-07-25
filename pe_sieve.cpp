@@ -69,7 +69,10 @@ ProcessScanReport* check_modules_in_process(const t_params args)
 			throw std::exception("Scanner mismatch. Try to use the 64bit version of the scanner.", ERROR_INVALID_PARAMETER);
 		}
 		if (args.suspend) {
-			should_resume = suspend_process(args.pid);
+			bool is_my = GetCurrentProcessId() == args.pid;
+			if (!is_my) { // cannot suspend your own process!
+				should_resume = suspend_process(args.pid);
+			}
 		}
 		ProcessScanner scanner(hProcess, args);
 		process_report = scanner.scanRemote();
